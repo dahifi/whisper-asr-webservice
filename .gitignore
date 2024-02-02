@@ -42,3 +42,6 @@ pip-wheel-metadata
 poetry/core/*
 
 public
+/cert.pem
+/csr.pem
+/key.pem

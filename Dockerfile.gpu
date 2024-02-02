@@ -45,5 +45,9 @@ RUN git clone --depth 1 https://github.com/m-bain/whisperX.git \
     && git checkout d97cdb7bcf302fb3e1651321a5935f90594e994c \
     && $POETRY_VENV/bin/pip install --no-dependencies -e .
 
+# Copy SSL certificates into the container
+COPY ./cert.pem /app/cert.pem
+COPY ./key.pem /app/key.pem
+
 EXPOSE 9000
-CMD gunicorn --bind 0.0.0.0:9000 --workers 1 --timeout 0 app.webservice:app -k uvicorn.workers.UvicornWorker
+CMD gunicorn --bind 0.0.0.0:9000 --workers 1 --timeout 0 --keyfile=/app/key.pem --certfile=/app/cert.pem app.webservice:app -k uvicorn.workers.UvicornWorker
