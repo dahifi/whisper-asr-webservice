@@ -42,6 +42,7 @@ app = FastAPI(
 
 allowed_origins = [
     "http://localhost:5173",  # Make sure this matches the port your frontend is running on
+    "https://vaco-frontend-app-bucket.storage.googleapis.com",
 ]
 
 app.add_middleware(

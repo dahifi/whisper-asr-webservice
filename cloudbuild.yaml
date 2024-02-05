@@ -1,0 +1,11 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['-c', 'docker pull gcr.io/vacotechsprint/whisperx-asr-webservice:latest || exit 0']
+    args: [
+      'build',
+      '-t', 'gcr.io/vacotechsprint/whisperx-asr-webservice:latest',
+      '-f', 'Dockerfile.gpu', '.',
+      '--cache-from', 'gcr.io/vacotechsprint/whisperx-asr-webservice:latest',
+    ]
+images:
+  - 'gcr.io/vacotechsprint/whisperx-asr-webservice:latest'
